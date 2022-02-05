@@ -22,10 +22,16 @@ class qsListener(ParseTreeListener):
 
 # Exit a parse tree produced by qsParser#parse.
   def exitParse(self, ctx: qsParser.ParseContext):
-    val = 0
-    for i in self.stack:
-      val += i[0]
-    self.val = val
+    if ctx.expression().NUMBER():
+      self.val = float(ctx.expression().NUMBER().getText())
+    elif ctx.expression().unit():
+      unitCtx = ctx.expression().unit()
+      self.val = float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]
+    else:
+      val = 0
+      for i in self.stack:
+        val += i[0]
+      self.val = val
 
 # Enter a parse tree produced by qsParser#expression.
   def enterExpression(self, ctx: qsParser.ExpressionContext):
@@ -36,7 +42,7 @@ class qsListener(ParseTreeListener):
         self.stack.append([float(ctx.expression(0).NUMBER().getText())])
       elif ctx.expression(0).unit():
         unitCtx = ctx.expression(0).unit()
-        self.stack.append([float(unitCtx.NUMBER().getText()) * units[unitCtx.getText()]])
+        self.stack.append([float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]])
       else:
         self.stack.append([])
 
@@ -50,7 +56,7 @@ class qsListener(ParseTreeListener):
         left = self.stack.pop()[0]
       elif leftCtx.unit():
         unitCtx = leftCtx.unit()
-        left = float(unitCtx.NUMBER().getText()) * units[unitCtx.getText()]
+        left = float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]
       else:
         if leftCtx.NUMBER():
           left = float(leftCtx.NUMBER().getText())
@@ -62,7 +68,7 @@ class qsListener(ParseTreeListener):
         self.stack[-1].clear()
       elif rightCtx.unit():
         unitCtx = rightCtx.unit()
-        right = float(unitCtx.NUMBER().getText()) * units[unitCtx.getText()]
+        right = float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]
       else:
         if rightCtx.NUMBER():
           right = float(rightCtx.NUMBER().getText())
@@ -101,7 +107,7 @@ class qsListener(ParseTreeListener):
           self.stack[-1].append(float(arg.NUMBER().getText()))
         elif arg.unit():
           unitCtx = arg.unit()
-          self.stack[-1].append(float(unitCtx.NUMBER().getText()) * units[unitCtx.getText()])
+          self.stack[-1].append(float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()])
         elif len(arg.expression()) == 1:
           t = self.stack.pop()
           self.stack[-1].append(t[0])
