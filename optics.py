@@ -1,5 +1,7 @@
 import math
+import random
 
+# polarizing beam splitter
 def PBS(basis: str, intensity: float, polarization: str):
   try:
     intensity = float(intensity)
@@ -29,4 +31,14 @@ def PBS(basis: str, intensity: float, polarization: str):
 def malusLaw(intensity: float, theta: float):
   return intensity * math.cos( theta )**2
 
-commands = { "PBS": PBS, "malusLaw": malusLaw }
+# binary one time pad key generator
+def botpKeyGen(length: int):
+  return "".join(list(map(lambda bit: str(random.randint(0, 1)), [0] * length)))
+
+# binary one time pad
+def botp(key: str, message: str):
+  if len(key) != len(message):
+    return f"Key and message lengths do not match: {len(key)} != {len(message)}"
+  return "".join(list(map(lambda x: str(int(x[0]) ^ int(x[1])), zip(key, message))))
+
+commands = { "PBS": PBS, "malusLaw": malusLaw, "botp": botp, "botpKeyGen": botpKeyGen }
