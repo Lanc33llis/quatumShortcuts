@@ -61,7 +61,8 @@ class qsListener(ParseTreeListener):
         if leftCtx.NUMBER():
           left = float(leftCtx.NUMBER().getText())
         else:
-          left = self.stack.pop(0)[0]
+          # left = self.stack.pop(0)[0]
+          left = self.stack[-1].pop(0)
       rightCtx, right = ctx.expression(1), 0
       if rightCtx.MULTDIV() or rightCtx.ADDSUB():
         right = self.stack[-1][-1]
@@ -110,14 +111,17 @@ class qsListener(ParseTreeListener):
           self.stack[-1].append(float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()])
         elif len(arg.expression()) == 1:
           t = self.stack.pop()
+          if (len(self.stack) == 0):
+            self.stack.append([])
           self.stack[-1].append(t[0])
     funcName = ctx.ID().getText()
+    numArgs = len(ctx.arguments().expression())
     if funcName  not in commands:
       raise Exception(f'Unknown command: {funcName}')
     else:
-        val = commands[funcName](*self.stack[-1])
-    self.stack[-1].clear()
-    self.stack[-1].append(val)
+      val = commands[funcName](*self.stack[-1][-numArgs:])
+      self.stack[-1] = self.stack[-1][:-numArgs]
+      self.stack[-1].append(val)
 
   # Enter a parse tree produced by qsParser#arguments.
   def enterArguments(self, ctx: qsParser.ArgumentsContext):
