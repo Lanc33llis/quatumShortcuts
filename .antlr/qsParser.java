@@ -94,7 +94,6 @@ public class qsParser extends Parser {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode EOF() { return getToken(qsParser.EOF, 0); }
 		public ParseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -109,8 +108,6 @@ public class qsParser extends Parser {
 			{
 			setState(10);
 			expression(0);
-			setState(11);
-			match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -163,52 +160,52 @@ public class qsParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(23);
+			setState(22);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				{
-				setState(14);
+				setState(13);
 				function();
 				}
 				break;
 			case 2:
 				{
-				setState(15);
+				setState(14);
 				match(T__0);
-				setState(16);
+				setState(15);
 				expression(0);
-				setState(17);
+				setState(16);
 				match(T__1);
 				}
 				break;
 			case 3:
 				{
-				setState(19);
+				setState(18);
 				unit();
 				}
 				break;
 			case 4:
 				{
-				setState(20);
+				setState(19);
 				match(NUMBER);
 				}
 				break;
 			case 5:
 				{
-				setState(21);
+				setState(20);
 				match(TEXT);
 				}
 				break;
 			case 6:
 				{
-				setState(22);
+				setState(21);
 				match(ID);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(33);
+			setState(32);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -216,18 +213,18 @@ public class qsParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(31);
+					setState(30);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(25);
+						setState(24);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(26);
+						setState(25);
 						match(MULTDIV);
-						setState(27);
+						setState(26);
 						expression(8);
 						}
 						break;
@@ -235,18 +232,18 @@ public class qsParser extends Parser {
 						{
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(28);
+						setState(27);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(29);
+						setState(28);
 						match(ADDSUB);
-						setState(30);
+						setState(29);
 						expression(7);
 						}
 						break;
 					}
 					} 
 				}
-				setState(35);
+				setState(34);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			}
@@ -278,9 +275,9 @@ public class qsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(36);
+			setState(35);
 			match(NUMBER);
-			setState(37);
+			setState(36);
 			match(ID);
 			}
 		}
@@ -313,21 +310,21 @@ public class qsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(38);
 			match(ID);
-			setState(40);
+			setState(39);
 			match(T__0);
-			setState(42);
+			setState(41);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << NUMBER) | (1L << ID) | (1L << TEXT))) != 0)) {
 				{
-				setState(41);
+				setState(40);
 				arguments();
 				}
 			}
 
-			setState(44);
+			setState(43);
 			match(T__1);
 			}
 		}
@@ -362,21 +359,21 @@ public class qsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
+			setState(45);
 			expression(0);
-			setState(51);
+			setState(50);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__2) {
 				{
 				{
-				setState(47);
+				setState(46);
 				match(T__2);
-				setState(48);
+				setState(47);
 				expression(0);
 				}
 				}
-				setState(53);
+				setState(52);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -411,22 +408,21 @@ public class qsParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\139\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\5\3\32\n\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3\"\n\3\f\3\16\3%\13\3\3"+
-		"\4\3\4\3\4\3\5\3\5\3\5\5\5-\n\5\3\5\3\5\3\6\3\6\3\6\7\6\64\n\6\f\6\16"+
-		"\6\67\13\6\3\6\2\3\4\7\2\4\6\b\n\2\2\2<\2\f\3\2\2\2\4\31\3\2\2\2\6&\3"+
-		"\2\2\2\b)\3\2\2\2\n\60\3\2\2\2\f\r\5\4\3\2\r\16\7\2\2\3\16\3\3\2\2\2\17"+
-		"\20\b\3\1\2\20\32\5\b\5\2\21\22\7\3\2\2\22\23\5\4\3\2\23\24\7\4\2\2\24"+
-		"\32\3\2\2\2\25\32\5\6\4\2\26\32\7\6\2\2\27\32\7\b\2\2\30\32\7\7\2\2\31"+
-		"\17\3\2\2\2\31\21\3\2\2\2\31\25\3\2\2\2\31\26\3\2\2\2\31\27\3\2\2\2\31"+
-		"\30\3\2\2\2\32#\3\2\2\2\33\34\f\t\2\2\34\35\7\t\2\2\35\"\5\4\3\n\36\37"+
-		"\f\b\2\2\37 \7\n\2\2 \"\5\4\3\t!\33\3\2\2\2!\36\3\2\2\2\"%\3\2\2\2#!\3"+
-		"\2\2\2#$\3\2\2\2$\5\3\2\2\2%#\3\2\2\2&\'\7\6\2\2\'(\7\7\2\2(\7\3\2\2\2"+
-		")*\7\7\2\2*,\7\3\2\2+-\5\n\6\2,+\3\2\2\2,-\3\2\2\2-.\3\2\2\2./\7\4\2\2"+
-		"/\t\3\2\2\2\60\65\5\4\3\2\61\62\7\5\2\2\62\64\5\4\3\2\63\61\3\2\2\2\64"+
-		"\67\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\66\13\3\2\2\2\67\65\3\2\2\2\7"+
-		"\31!#,\65";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\138\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\5\3\31\n\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3!\n\3\f\3\16\3$\13\3\3\4\3"+
+		"\4\3\4\3\5\3\5\3\5\5\5,\n\5\3\5\3\5\3\6\3\6\3\6\7\6\63\n\6\f\6\16\6\66"+
+		"\13\6\3\6\2\3\4\7\2\4\6\b\n\2\2\2;\2\f\3\2\2\2\4\30\3\2\2\2\6%\3\2\2\2"+
+		"\b(\3\2\2\2\n/\3\2\2\2\f\r\5\4\3\2\r\3\3\2\2\2\16\17\b\3\1\2\17\31\5\b"+
+		"\5\2\20\21\7\3\2\2\21\22\5\4\3\2\22\23\7\4\2\2\23\31\3\2\2\2\24\31\5\6"+
+		"\4\2\25\31\7\6\2\2\26\31\7\b\2\2\27\31\7\7\2\2\30\16\3\2\2\2\30\20\3\2"+
+		"\2\2\30\24\3\2\2\2\30\25\3\2\2\2\30\26\3\2\2\2\30\27\3\2\2\2\31\"\3\2"+
+		"\2\2\32\33\f\t\2\2\33\34\7\t\2\2\34!\5\4\3\n\35\36\f\b\2\2\36\37\7\n\2"+
+		"\2\37!\5\4\3\t \32\3\2\2\2 \35\3\2\2\2!$\3\2\2\2\" \3\2\2\2\"#\3\2\2\2"+
+		"#\5\3\2\2\2$\"\3\2\2\2%&\7\6\2\2&\'\7\7\2\2\'\7\3\2\2\2()\7\7\2\2)+\7"+
+		"\3\2\2*,\5\n\6\2+*\3\2\2\2+,\3\2\2\2,-\3\2\2\2-.\7\4\2\2.\t\3\2\2\2/\64"+
+		"\5\4\3\2\60\61\7\5\2\2\61\63\5\4\3\2\62\60\3\2\2\2\63\66\3\2\2\2\64\62"+
+		"\3\2\2\2\64\65\3\2\2\2\65\13\3\2\2\2\66\64\3\2\2\2\7\30 \"+\64";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

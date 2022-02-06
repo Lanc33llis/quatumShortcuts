@@ -1,7 +1,7 @@
 grammar qs;
 
 parse
-    : expression EOF
+    : expression
     ;
 
 expression

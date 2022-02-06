@@ -1,6 +1,7 @@
 # Generated from qs.g4 by ANTLR 4.9.3
 from antlr4 import *
-from units import units
+from units import *
+
 from commands import commands
 if __name__ is not None and "." in __name__:
   from .qsParser import qsParser
@@ -26,12 +27,56 @@ class qsListener(ParseTreeListener):
       self.val = float(ctx.expression().NUMBER().getText())
     elif ctx.expression().unit():
       unitCtx = ctx.expression().unit()
-      self.val = float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]
+      self.val = f'{unitCtx.NUMBER().getText()}{unitCtx.ID().getText()}'
     else:
-      val = 0
+      unitKey = {
+      }
+      unitFunctions = {
+        "units": lambda x: unit(x, None, None),
+        "meters": usingMeters,
+      }
       for i in self.stack:
-        val += i[0]
-      self.val = val
+        if isinstance(i[0], unit):
+          raw, unitType, unitName = i[0].raw, i[0].unitType, i[0].unitName
+          if unitName == None or unitName == '':
+            unitKey["units"] += (raw)
+          elif unitType in units:
+            if not hasattr(unitKey, unitName):
+              unitKey[unitName] = raw
+            else:
+              unitKey[unitName] += (raw)
+        else:
+          if not hasattr(unitKey, "units"):
+            unitKey["units"] = float(i[0])
+          else:
+            unitKey["units"] += (float(i[0]))
+
+      s = ""
+      for key, value in unitKey.items():
+        result = unitFunctions[key](value)
+        if result.raw == 0:
+          continue
+        if len(s) == 0:
+          s += f'{result}'
+        else:
+          if result > 0:
+            s += f' + {result}'
+          else:
+            s += f' - {abs(result)}'
+      if s == "":
+        s = "0"
+        # print(unitFunctions[key](value))
+      self.val = s
+      # metersSum = []
+      # for i in self.stack:
+      #   there = re.compile(r'\s*([\-]?\d+.?\d+)\s*([a-zA-Z]*)')
+      #   thematch = there.match(i[0])
+      #   if thematch:
+      #     number, unit = thematch.groups()
+      #     if unit in units:
+      #       if unit in meters:
+      #         metersSum.append(float(number) * units[unit])
+      # self.val = usingMeters(sum(metersSum))
 
 # Enter a parse tree produced by qsParser#expression.
   def enterExpression(self, ctx: qsParser.ExpressionContext):
@@ -47,6 +92,7 @@ class qsListener(ParseTreeListener):
         self.stack.append([])
 
 # Exit a parse tree produced by qsParser#expression.
+  # undoubtedly this will be a mess to debug in the future, but it works for now
   def exitExpression(self, ctx: qsParser.ExpressionContext):
     if ctx.MULTDIV() or ctx.ADDSUB():
       leftCtx, left = ctx.expression(0), 0
@@ -63,6 +109,8 @@ class qsListener(ParseTreeListener):
         else:
           # left = self.stack.pop(0)[0]
           left = self.stack[-1].pop(0)
+          if isinstance(left, unit):
+            left = left.raw
       rightCtx, right = ctx.expression(1), 0
       if rightCtx.MULTDIV() or rightCtx.ADDSUB():
         right = self.stack[-1][-1]
@@ -75,6 +123,8 @@ class qsListener(ParseTreeListener):
           right = float(rightCtx.NUMBER().getText())
         else:
           right = self.stack[-1].pop(0)
+          if isinstance(right, unit):
+            right = right.raw
       operatorExpr = ctx.MULTDIV() or ctx.ADDSUB()
       operator = operatorExpr.getText()
       if len(self.stack) == 0:
@@ -102,8 +152,9 @@ class qsListener(ParseTreeListener):
 
   # Exit a parse tree produced by qsParser#function.
   def exitFunction(self, ctx: qsParser.FunctionContext):
-    if ctx.arguments():
-      for arg in ctx.arguments().expression():
+    argCtx = ctx.arguments()
+    if argCtx:
+      for arg in argCtx.expression():
         if arg.NUMBER():
           self.stack[-1].append(float(arg.NUMBER().getText()))
         elif arg.unit():
@@ -115,7 +166,7 @@ class qsListener(ParseTreeListener):
             self.stack.append([])
           self.stack[-1].append(t[0])
     funcName = ctx.ID().getText()
-    numArgs = len(ctx.arguments().expression())
+    numArgs = len(argCtx.expression()) if argCtx else 0
     if funcName  not in commands:
       raise Exception(f'Unknown command: {funcName}')
     else:

@@ -1,16 +1,37 @@
 from halo import Halo
-from commands import execCommand
+from antlr4 import *
+
+from qsLexer import qsLexer
+from qsParser import qsParser
+from qsListener2 import qsListener
 
 spinner = Halo(spinner="dots", color="white")
 
 def main():
+  print('''
+  _____Quantum Shortcuts_____
+  ___________________________
+  -Custom Parser with ANTLR4-
+  ___________________________
+  ____Various Quantum Math___
+  _________Functions_________
+  ___________________________
+  _______Version: 0.1.0______
+  ___________________________
+  ''')
   while True:
     print(">", end=" ")
-    command = input()
+    inputStream = InputStream(input())
 
-    if command == "":
-      continue
+    result = 0
     with spinner:
-      result = execCommand(command)
+      lexer = qsLexer(inputStream)
+      stream = CommonTokenStream(lexer)
+      parser = qsParser(stream)
+      tree = parser.parse()
+      listener = qsListener()
+      walker = ParseTreeWalker()
+      walker.walk(listener, tree)
+      result = listener.val
     print(f">> {result}")
 main()
