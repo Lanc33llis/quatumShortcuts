@@ -29,7 +29,7 @@ def PBS(basis: str, intensity: float, polarization: str):
       return (intensity / 2, intensity / 2)
 
 def malusLaw(intensity: float, theta: float):
-  return intensity * math.cos( theta )**2
+  return usingMeters(intensity.raw * math.cos( theta.raw )**2)
 
 # binary one time pad key generator
 def botpKeyGen(length: int):

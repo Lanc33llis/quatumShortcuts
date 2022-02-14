@@ -25,7 +25,8 @@ class qsListener(ParseTreeListener):
   def exitParse(self, ctx: qsParser.ParseContext):
     types = {}
     usingKey = {
-      "meters": usingMeters
+      "meters": usingMeters,
+      "watts": usingWatts,
     }
 
     for ctx in self.stack:
@@ -49,7 +50,6 @@ class qsListener(ParseTreeListener):
     if ctx.MULTDIV() or ctx.ADDSUB():
       operatorCtx = ctx.MULTDIV() or ctx.ADDSUB()
       operator = operatorCtx.getText()
-      # fix left and right sides
       right, left = self.stack[-1].pop(), self.stack[-1].pop()
       if operator == "*":
         result = left * right
