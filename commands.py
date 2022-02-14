@@ -12,7 +12,7 @@ def func1(x , y):
   return x + y
 
 def func2(x):
-  return usingMeters(x * 2)
+  return usingMeters(x.raw * 2)
 
 
 commands = { "hello": hello, "exit": exit, **optics, "func1": func1, "func2": func2 }

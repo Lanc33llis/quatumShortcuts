@@ -36,20 +36,21 @@ class qsListener(ParseTreeListener):
         "meters": usingMeters,
       }
       for i in self.stack:
-        if isinstance(i[0], unit):
-          raw, unitType, unitName = i[0].raw, i[0].unitType, i[0].unitName
-          if unitName == None or unitName == '':
-            unitKey["units"] += (raw)
-          elif unitType in units:
-            if not hasattr(unitKey, unitName):
-              unitKey[unitName] = raw
-            else:
-              unitKey[unitName] += (raw)
-        else:
-          if not hasattr(unitKey, "units"):
-            unitKey["units"] = float(i[0])
+        for e in i:
+          if isinstance(e, unit):
+            raw, unitType, unitName = e.raw, e.unitType, e.unitName
+            if unitName == None or unitName == '':
+              unitKey["units"] += (raw)
+            elif unitType in units:
+              if not hasattr(unitKey, unitName):
+                unitKey[unitName] = raw
+              else:
+                unitKey[unitName] += (raw)
           else:
-            unitKey["units"] += (float(i[0]))
+            if not hasattr(unitKey, "units"):
+              unitKey["units"] = float(e)
+            else:
+              unitKey["units"] += (float(e))
 
       s = ""
       for key, value in unitKey.items():
@@ -59,10 +60,11 @@ class qsListener(ParseTreeListener):
         if len(s) == 0:
           s += f'{result}'
         else:
-          if result > 0:
-            s += f' + {result}'
+          raw = result.raw if isinstance(result, unit) else result
+          if raw < 0:
+            s += f' - {result.absStr() if isinstance(result, unit) else abs(result)}'
           else:
-            s += f' - {abs(result)}'
+            s += f' + {result}'
       if s == "":
         s = "0"
         # print(unitFunctions[key](value))
@@ -72,7 +74,7 @@ class qsListener(ParseTreeListener):
       #   there = re.compile(r'\s*([\-]?\d+.?\d+)\s*([a-zA-Z]*)')
       #   thematch = there.match(i[0])
       #   if thematch:
-      #     number, unit = thematch.groups()
+      #     number, unit = thematch.gr6oups()
       #     if unit in units:
       #       if unit in meters:
       #         metersSum.append(float(number) * units[unit])
@@ -102,41 +104,53 @@ class qsListener(ParseTreeListener):
         left = self.stack.pop()[0]
       elif leftCtx.unit():
         unitCtx = leftCtx.unit()
-        left = float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]
+        left = unit(float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()], unitCtx.ID().getText(), getUnitName(unitCtx.ID().getText()))
       else:
         if leftCtx.NUMBER():
           left = float(leftCtx.NUMBER().getText())
         else:
           # left = self.stack.pop(0)[0]
           left = self.stack[-1].pop(0)
-          if isinstance(left, unit):
-            left = left.raw
+          # if isinstance(left, unit):
+          #   left = left.raw
       rightCtx, right = ctx.expression(1), 0
       if rightCtx.MULTDIV() or rightCtx.ADDSUB():
         right = self.stack[-1][-1]
         self.stack[-1].clear()
       elif rightCtx.unit():
         unitCtx = rightCtx.unit()
-        right = float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()]
+        right = unit(float(unitCtx.NUMBER().getText()) * units[unitCtx.ID().getText()], unitCtx.ID().getText(), getUnitName(unitCtx.ID().getText()))
       else:
         if rightCtx.NUMBER():
           right = float(rightCtx.NUMBER().getText())
         else:
           right = self.stack[-1].pop(0)
-          if isinstance(right, unit):
-            right = right.raw
+          # if isinstance(right, unit):
+          #   right = right.raw
       operatorExpr = ctx.MULTDIV() or ctx.ADDSUB()
       operator = operatorExpr.getText()
       if len(self.stack) == 0:
         self.stack.append([])
-      if operator == '*':
-        self.stack[-1].append(left * right)
-      elif operator == "/":
-        self.stack[-1].append(left / right)
-      elif operator == "+":
-        self.stack[-1].append(left + right)
-      elif operator == "-":
-        self.stack[-1].append(left - right)
+      if isinstance(left, unit) and isinstance(right, unit) and left.unitType == right.unitType:
+        if operator == '*':
+          self.stack[-1].append(unit(left.raw * right.raw, left.unitType, left.unitName))
+        elif operator == "/":
+          self.stack[-1].append(unit(left.raw / right.raw, left.unitType, left.unitName))
+        elif operator == "+":
+          self.stack[-1].append(unit(left.raw + right.raw, left.unitType, left.unitName))
+        elif operator == "-":
+          self.stack[-1].append(unit(left.raw - right.raw, left.unitType, left.unitName))
+      elif isinstance(left, float) and isinstance(right, float):
+        if operator == '*':
+          self.stack[-1].append(left * right)
+        elif operator == "/":
+          self.stack[-1].append(left / right)
+        elif operator == "+":
+          self.stack[-1].append(left + right)
+        elif operator == "-":
+          self.stack[-1].append(left - right)
+      else:
+        self.stack[-1] += [left, right if operator == '+' else right if isinstance(right, unit) else -right]
 
   # Enter a parse tree produced by qsParser#unit.
   def enterUnit(self, ctx: qsParser.UnitContext):

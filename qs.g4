@@ -1,7 +1,7 @@
 grammar qs;
 
 parse
-    : expression
+    : expression EOF
     ;
 
 expression
@@ -10,13 +10,13 @@ expression
     | expression ADDSUB expression
     | '(' expression ')'
     | unit
-    | NUMBER
     | TEXT
     | ID
     ;
 
 unit
     : NUMBER ID
+    | NUMBER
     ;
 
 function

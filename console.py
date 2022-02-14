@@ -3,7 +3,7 @@ from antlr4 import *
 
 from qsLexer import qsLexer
 from qsParser import qsParser
-from qsListener2 import qsListener
+from qsListener3 import qsListener
 
 spinner = Halo(spinner="dots", color="white")
 
