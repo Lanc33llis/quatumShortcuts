@@ -1,4 +1,4 @@
-// Generated from c:\Users\Lance\Documents\Coding\quatumShortcuts\qs.g4 by ANTLR 4.8
+// Generated from c:\Users\Lance\Documents\Coding\quatumShortcuts\qs.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class qsParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, NUMBER=4, ID=5, TEXT=6, MULTDIV=7, ADDSUB=8, SPACE=9;
+		T__0=1, T__1=2, T__2=3, KEYWORD=4, NUMBER=5, ID=6, TEXT=7, MULTDIV=8, 
+		ADDSUB=9, SPACE=10;
 	public static final int
 		RULE_parse = 0, RULE_expression = 1, RULE_unit = 2, RULE_function = 3, 
 		RULE_arguments = 4;
@@ -35,8 +36,8 @@ public class qsParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, "NUMBER", "ID", "TEXT", "MULTDIV", "ADDSUB", 
-			"SPACE"
+			null, null, null, null, "KEYWORD", "NUMBER", "ID", "TEXT", "MULTDIV", 
+			"ADDSUB", "SPACE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -141,6 +142,7 @@ public class qsParser extends Parser {
 		public TerminalNode ID() { return getToken(qsParser.ID, 0); }
 		public TerminalNode MULTDIV() { return getToken(qsParser.MULTDIV, 0); }
 		public TerminalNode ADDSUB() { return getToken(qsParser.ADDSUB, 0); }
+		public TerminalNode KEYWORD() { return getToken(qsParser.KEYWORD, 0); }
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -201,7 +203,7 @@ public class qsParser extends Parser {
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(32);
+			setState(35);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -209,7 +211,7 @@ public class qsParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(30);
+					setState(33);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 					case 1:
@@ -217,11 +219,11 @@ public class qsParser extends Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(24);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(25);
 						match(MULTDIV);
 						setState(26);
-						expression(7);
+						expression(8);
 						}
 						break;
 					case 2:
@@ -229,17 +231,29 @@ public class qsParser extends Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(27);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
 						setState(28);
 						match(ADDSUB);
 						setState(29);
+						expression(7);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new ExpressionContext(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(30);
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						setState(31);
+						match(KEYWORD);
+						setState(32);
 						expression(6);
 						}
 						break;
 					}
 					} 
 				}
-				setState(34);
+				setState(37);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			}
@@ -269,22 +283,22 @@ public class qsParser extends Parser {
 		UnitContext _localctx = new UnitContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_unit);
 		try {
-			setState(38);
+			setState(41);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(35);
+				setState(38);
 				match(NUMBER);
-				setState(36);
+				setState(39);
 				match(ID);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(37);
+				setState(40);
 				match(NUMBER);
 				}
 				break;
@@ -319,21 +333,21 @@ public class qsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(40);
-			match(ID);
-			setState(41);
-			match(T__0);
 			setState(43);
+			match(ID);
+			setState(44);
+			match(T__0);
+			setState(46);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << NUMBER) | (1L << ID) | (1L << TEXT))) != 0)) {
 				{
-				setState(42);
+				setState(45);
 				arguments();
 				}
 			}
 
-			setState(45);
+			setState(48);
 			match(T__1);
 			}
 		}
@@ -368,21 +382,21 @@ public class qsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(47);
+			setState(50);
 			expression(0);
-			setState(52);
+			setState(55);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__2) {
 				{
 				{
-				setState(48);
+				setState(51);
 				match(T__2);
-				setState(49);
+				setState(52);
 				expression(0);
 				}
 				}
-				setState(54);
+				setState(57);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -409,30 +423,33 @@ public class qsParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 6);
+			return precpred(_ctx, 7);
 		case 1:
+			return precpred(_ctx, 6);
+		case 2:
 			return precpred(_ctx, 5);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13:\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f=\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\5\3\31\n\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3!\n\3\f\3\16\3$\13\3\3\4\3"+
-		"\4\3\4\5\4)\n\4\3\5\3\5\3\5\5\5.\n\5\3\5\3\5\3\6\3\6\3\6\7\6\65\n\6\f"+
-		"\6\16\68\13\6\3\6\2\3\4\7\2\4\6\b\n\2\2\2=\2\f\3\2\2\2\4\30\3\2\2\2\6"+
-		"(\3\2\2\2\b*\3\2\2\2\n\61\3\2\2\2\f\r\5\4\3\2\r\16\7\2\2\3\16\3\3\2\2"+
-		"\2\17\20\b\3\1\2\20\31\5\b\5\2\21\22\7\3\2\2\22\23\5\4\3\2\23\24\7\4\2"+
-		"\2\24\31\3\2\2\2\25\31\5\6\4\2\26\31\7\b\2\2\27\31\7\7\2\2\30\17\3\2\2"+
-		"\2\30\21\3\2\2\2\30\25\3\2\2\2\30\26\3\2\2\2\30\27\3\2\2\2\31\"\3\2\2"+
-		"\2\32\33\f\b\2\2\33\34\7\t\2\2\34!\5\4\3\t\35\36\f\7\2\2\36\37\7\n\2\2"+
-		"\37!\5\4\3\b \32\3\2\2\2 \35\3\2\2\2!$\3\2\2\2\" \3\2\2\2\"#\3\2\2\2#"+
-		"\5\3\2\2\2$\"\3\2\2\2%&\7\6\2\2&)\7\7\2\2\')\7\6\2\2(%\3\2\2\2(\'\3\2"+
-		"\2\2)\7\3\2\2\2*+\7\7\2\2+-\7\3\2\2,.\5\n\6\2-,\3\2\2\2-.\3\2\2\2./\3"+
-		"\2\2\2/\60\7\4\2\2\60\t\3\2\2\2\61\66\5\4\3\2\62\63\7\5\2\2\63\65\5\4"+
-		"\3\2\64\62\3\2\2\2\658\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67\13\3\2\2"+
-		"\28\66\3\2\2\2\b\30 \"(-\66";
+		"\3\3\5\3\31\n\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3$\n\3\f\3\16\3"+
+		"\'\13\3\3\4\3\4\3\4\5\4,\n\4\3\5\3\5\3\5\5\5\61\n\5\3\5\3\5\3\6\3\6\3"+
+		"\6\7\68\n\6\f\6\16\6;\13\6\3\6\2\3\4\7\2\4\6\b\n\2\2\2A\2\f\3\2\2\2\4"+
+		"\30\3\2\2\2\6+\3\2\2\2\b-\3\2\2\2\n\64\3\2\2\2\f\r\5\4\3\2\r\16\7\2\2"+
+		"\3\16\3\3\2\2\2\17\20\b\3\1\2\20\31\5\b\5\2\21\22\7\3\2\2\22\23\5\4\3"+
+		"\2\23\24\7\4\2\2\24\31\3\2\2\2\25\31\5\6\4\2\26\31\7\t\2\2\27\31\7\b\2"+
+		"\2\30\17\3\2\2\2\30\21\3\2\2\2\30\25\3\2\2\2\30\26\3\2\2\2\30\27\3\2\2"+
+		"\2\31%\3\2\2\2\32\33\f\t\2\2\33\34\7\n\2\2\34$\5\4\3\n\35\36\f\b\2\2\36"+
+		"\37\7\13\2\2\37$\5\4\3\t !\f\7\2\2!\"\7\6\2\2\"$\5\4\3\b#\32\3\2\2\2#"+
+		"\35\3\2\2\2# \3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'%\3\2"+
+		"\2\2()\7\7\2\2),\7\b\2\2*,\7\7\2\2+(\3\2\2\2+*\3\2\2\2,\7\3\2\2\2-.\7"+
+		"\b\2\2.\60\7\3\2\2/\61\5\n\6\2\60/\3\2\2\2\60\61\3\2\2\2\61\62\3\2\2\2"+
+		"\62\63\7\4\2\2\63\t\3\2\2\2\649\5\4\3\2\65\66\7\5\2\2\668\5\4\3\2\67\65"+
+		"\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2:\13\3\2\2\2;9\3\2\2\2\b\30#%"+
+		"+\609";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

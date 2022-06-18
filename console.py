@@ -3,7 +3,9 @@ from antlr4 import *
 
 from qsLexer import qsLexer
 from qsParser import qsParser
-from qsListener3 import qsListener
+from qs4Listener import qsListener
+
+import time
 
 spinner = Halo(spinner="dots", color="white")
 
@@ -23,6 +25,7 @@ def main():
     print(">", end=" ")
     inputStream = InputStream(input())
 
+    start_time = time.perf_counter()
     result = 0
     with spinner:
       lexer = qsLexer(inputStream)
@@ -34,4 +37,5 @@ def main():
       walker.walk(listener, tree)
       result = listener.val
     print(f">> {result}")
+    print(f">>> Time to Execute: {time.perf_counter() - start_time}")
 main()

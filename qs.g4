@@ -8,6 +8,7 @@ expression
     : function
     | expression MULTDIV expression
     | expression ADDSUB expression
+    | expression KEYWORD expression
     | '(' expression ')'
     | unit
     | TEXT
@@ -25,6 +26,11 @@ function
 
 arguments
     : expression ( ',' expression )*
+    ;
+
+KEYWORD
+    : 'to'
+    | '='
     ;
 
 NUMBER       : [-]* ( [0-9]* '.' )? [0-9]+;

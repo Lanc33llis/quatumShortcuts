@@ -11,26 +11,27 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13")
-        buf.write(":\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f")
+        buf.write("=\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2")
         buf.write("\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\31\n\3\3\3\3")
-        buf.write("\3\3\3\3\3\3\3\3\3\7\3!\n\3\f\3\16\3$\13\3\3\4\3\4\3\4")
-        buf.write("\5\4)\n\4\3\5\3\5\3\5\5\5.\n\5\3\5\3\5\3\6\3\6\3\6\7\6")
-        buf.write("\65\n\6\f\6\16\68\13\6\3\6\2\3\4\7\2\4\6\b\n\2\2\2=\2")
-        buf.write("\f\3\2\2\2\4\30\3\2\2\2\6(\3\2\2\2\b*\3\2\2\2\n\61\3\2")
-        buf.write("\2\2\f\r\5\4\3\2\r\16\7\2\2\3\16\3\3\2\2\2\17\20\b\3\1")
-        buf.write("\2\20\31\5\b\5\2\21\22\7\3\2\2\22\23\5\4\3\2\23\24\7\4")
-        buf.write("\2\2\24\31\3\2\2\2\25\31\5\6\4\2\26\31\7\b\2\2\27\31\7")
-        buf.write("\7\2\2\30\17\3\2\2\2\30\21\3\2\2\2\30\25\3\2\2\2\30\26")
-        buf.write("\3\2\2\2\30\27\3\2\2\2\31\"\3\2\2\2\32\33\f\b\2\2\33\34")
-        buf.write("\7\t\2\2\34!\5\4\3\t\35\36\f\7\2\2\36\37\7\n\2\2\37!\5")
-        buf.write("\4\3\b \32\3\2\2\2 \35\3\2\2\2!$\3\2\2\2\" \3\2\2\2\"")
-        buf.write("#\3\2\2\2#\5\3\2\2\2$\"\3\2\2\2%&\7\6\2\2&)\7\7\2\2\'")
-        buf.write(")\7\6\2\2(%\3\2\2\2(\'\3\2\2\2)\7\3\2\2\2*+\7\7\2\2+-")
-        buf.write("\7\3\2\2,.\5\n\6\2-,\3\2\2\2-.\3\2\2\2./\3\2\2\2/\60\7")
-        buf.write("\4\2\2\60\t\3\2\2\2\61\66\5\4\3\2\62\63\7\5\2\2\63\65")
-        buf.write("\5\4\3\2\64\62\3\2\2\2\658\3\2\2\2\66\64\3\2\2\2\66\67")
-        buf.write("\3\2\2\2\67\13\3\2\2\28\66\3\2\2\2\b\30 \"(-\66")
+        buf.write("\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3$\n\3\f\3\16\3\'\13")
+        buf.write("\3\3\4\3\4\3\4\5\4,\n\4\3\5\3\5\3\5\5\5\61\n\5\3\5\3\5")
+        buf.write("\3\6\3\6\3\6\7\68\n\6\f\6\16\6;\13\6\3\6\2\3\4\7\2\4\6")
+        buf.write("\b\n\2\2\2A\2\f\3\2\2\2\4\30\3\2\2\2\6+\3\2\2\2\b-\3\2")
+        buf.write("\2\2\n\64\3\2\2\2\f\r\5\4\3\2\r\16\7\2\2\3\16\3\3\2\2")
+        buf.write("\2\17\20\b\3\1\2\20\31\5\b\5\2\21\22\7\3\2\2\22\23\5\4")
+        buf.write("\3\2\23\24\7\4\2\2\24\31\3\2\2\2\25\31\5\6\4\2\26\31\7")
+        buf.write("\t\2\2\27\31\7\b\2\2\30\17\3\2\2\2\30\21\3\2\2\2\30\25")
+        buf.write("\3\2\2\2\30\26\3\2\2\2\30\27\3\2\2\2\31%\3\2\2\2\32\33")
+        buf.write("\f\t\2\2\33\34\7\n\2\2\34$\5\4\3\n\35\36\f\b\2\2\36\37")
+        buf.write("\7\13\2\2\37$\5\4\3\t !\f\7\2\2!\"\7\6\2\2\"$\5\4\3\b")
+        buf.write("#\32\3\2\2\2#\35\3\2\2\2# \3\2\2\2$\'\3\2\2\2%#\3\2\2")
+        buf.write("\2%&\3\2\2\2&\5\3\2\2\2\'%\3\2\2\2()\7\7\2\2),\7\b\2\2")
+        buf.write("*,\7\7\2\2+(\3\2\2\2+*\3\2\2\2,\7\3\2\2\2-.\7\b\2\2.\60")
+        buf.write("\7\3\2\2/\61\5\n\6\2\60/\3\2\2\2\60\61\3\2\2\2\61\62\3")
+        buf.write("\2\2\2\62\63\7\4\2\2\63\t\3\2\2\2\649\5\4\3\2\65\66\7")
+        buf.write("\5\2\2\668\5\4\3\2\67\65\3\2\2\28;\3\2\2\29\67\3\2\2\2")
+        buf.write("9:\3\2\2\2:\13\3\2\2\2;9\3\2\2\2\b\30#%+\609")
         return buf.getvalue()
 
 
@@ -47,7 +48,8 @@ class qsParser ( Parser ):
     literalNames = [ "<INVALID>", "'('", "')'", "','" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "NUMBER", "ID", "TEXT", "MULTDIV", "ADDSUB", "SPACE" ]
+                      "KEYWORD", "NUMBER", "ID", "TEXT", "MULTDIV", "ADDSUB", 
+                      "SPACE" ]
 
     RULE_parse = 0
     RULE_expression = 1
@@ -61,12 +63,13 @@ class qsParser ( Parser ):
     T__0=1
     T__1=2
     T__2=3
-    NUMBER=4
-    ID=5
-    TEXT=6
-    MULTDIV=7
-    ADDSUB=8
-    SPACE=9
+    KEYWORD=4
+    NUMBER=5
+    ID=6
+    TEXT=7
+    MULTDIV=8
+    ADDSUB=9
+    SPACE=10
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -158,6 +161,9 @@ class qsParser ( Parser ):
         def ADDSUB(self):
             return self.getToken(qsParser.ADDSUB, 0)
 
+        def KEYWORD(self):
+            return self.getToken(qsParser.KEYWORD, 0)
+
         def getRuleIndex(self):
             return qsParser.RULE_expression
 
@@ -214,7 +220,7 @@ class qsParser ( Parser ):
 
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 32
+            self.state = 35
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -222,37 +228,50 @@ class qsParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 30
+                    self.state = 33
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
                     if la_ == 1:
                         localctx = qsParser.ExpressionContext(self, _parentctx, _parentState)
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 24
-                        if not self.precpred(self._ctx, 6):
+                        if not self.precpred(self._ctx, 7):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 7)")
                         self.state = 25
                         self.match(qsParser.MULTDIV)
                         self.state = 26
-                        self.expression(7)
+                        self.expression(8)
                         pass
 
                     elif la_ == 2:
                         localctx = qsParser.ExpressionContext(self, _parentctx, _parentState)
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 27
-                        if not self.precpred(self._ctx, 5):
+                        if not self.precpred(self._ctx, 6):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
                         self.state = 28
                         self.match(qsParser.ADDSUB)
                         self.state = 29
+                        self.expression(7)
+                        pass
+
+                    elif la_ == 3:
+                        localctx = qsParser.ExpressionContext(self, _parentctx, _parentState)
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
+                        self.state = 30
+                        if not self.precpred(self._ctx, 5):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                        self.state = 31
+                        self.match(qsParser.KEYWORD)
+                        self.state = 32
                         self.expression(6)
                         pass
 
              
-                self.state = 34
+                self.state = 37
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
 
@@ -297,20 +316,20 @@ class qsParser ( Parser ):
         localctx = qsParser.UnitContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_unit)
         try:
-            self.state = 38
+            self.state = 41
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 35
+                self.state = 38
                 self.match(qsParser.NUMBER)
-                self.state = 36
+                self.state = 39
                 self.match(qsParser.ID)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 37
+                self.state = 40
                 self.match(qsParser.NUMBER)
                 pass
 
@@ -359,19 +378,19 @@ class qsParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 40
-            self.match(qsParser.ID)
-            self.state = 41
-            self.match(qsParser.T__0)
             self.state = 43
+            self.match(qsParser.ID)
+            self.state = 44
+            self.match(qsParser.T__0)
+            self.state = 46
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << qsParser.T__0) | (1 << qsParser.NUMBER) | (1 << qsParser.ID) | (1 << qsParser.TEXT))) != 0):
-                self.state = 42
+                self.state = 45
                 self.arguments()
 
 
-            self.state = 45
+            self.state = 48
             self.match(qsParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
@@ -417,17 +436,17 @@ class qsParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 47
+            self.state = 50
             self.expression(0)
-            self.state = 52
+            self.state = 55
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==qsParser.T__2:
-                self.state = 48
+                self.state = 51
                 self.match(qsParser.T__2)
-                self.state = 49
+                self.state = 52
                 self.expression(0)
-                self.state = 54
+                self.state = 57
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -453,10 +472,14 @@ class qsParser ( Parser ):
 
     def expression_sempred(self, localctx:ExpressionContext, predIndex:int):
             if predIndex == 0:
-                return self.precpred(self._ctx, 6)
+                return self.precpred(self._ctx, 7)
          
 
             if predIndex == 1:
+                return self.precpred(self._ctx, 6)
+         
+
+            if predIndex == 2:
                 return self.precpred(self._ctx, 5)
          
 
