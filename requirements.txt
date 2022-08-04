@@ -1,0 +1,11 @@
+antlr4-python3-runtime==4.9.3
+autopep8==1.6.0
+colorama==0.4.4
+halo==0.0.31
+log-symbols==0.0.14
+pycodestyle==2.8.0
+pyreadline==2.1
+six==1.16.0
+spinners==0.0.24
+termcolor==1.1.0
+toml==0.10.2
