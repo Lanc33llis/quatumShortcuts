@@ -1,5 +1,17 @@
-# quantumShortcuts
+# lemma is a strongly typed language built for math
 
-## Goal:
+## Install
 
-A CLI for solving various quantum physics/programming problems accompanying my Quantum Computing class.
+```bash
+pip -m venv venv
+```
+Activate your virtual python environment either through ```.\venv\Scripts\activate``` or ```./venv/Scripts/activate```
+
+```bash
+pip -r requirements.txt
+```
+
+Run the app
+```bash
+python console.py
+```
